@@ -12,8 +12,35 @@ describe('ProductsList', () => {
     });
 
     it('should display products on a list', async () => {
-        // DEMO
+        const products = [
+            { id: 1, name: 'Apple' },
+            { id: 2, name: 'Samsung' },
+        ];
+
+        nock('http://localhost')
+            .get('/products')
+            .reply(200, products);
+        
+        nock('http://localhost')
+            .get('/categories')
+            .reply(200, []);
+        
+        render(<BrowserRouter><ProductsList /></BrowserRouter>);
+
+        // -> nie trzeba robić await
+        // waitForElementToBeRemoved(() => {
+        //     return screen.getByText('Wczytywanie...')
+        // }); 
+
+        await screen.findByTestId('products'); //find zamiast get i query dla Promise
+
+        const displayedProducts = screen.getAllByTestId('product');
+        //const displayedProducts = within(productList).getAllByRole('heading', { level: 4 });
+
+
+        expect(displayedProducts.map(item => item.textContent)).toEqual(['Apple', 'Samsung']);
     });
+
 
     it('should filter list when searched for some text', async () => {
         // DEMO
