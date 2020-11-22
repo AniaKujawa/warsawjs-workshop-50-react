@@ -9,7 +9,6 @@ import { Input } from '../components/Input/Input';
 describe('Button', () => {
 
     it('should render provided text', () => {
-        // DEMO
         render(<Button>Testowy przycisk</Button>);
 
         const button = screen.getByRole('button');
@@ -18,7 +17,6 @@ describe('Button', () => {
     });
 
     it('should allow to disable button', () => {
-        // DEMO
         render(<Button disabled={true}>Testowy przycisk</Button>);
 
         const button = screen.getByText('Testowy przycisk');
@@ -27,7 +25,6 @@ describe('Button', () => {
     });
 
     it('should make a callback when button clicked', () => {
-        // DEMO
         let onClick = jest.fn(); //zamockowana funkcja z jest :)
         render(<Button onClick={onClick}>Testowy przycisk</Button>); 
 
@@ -61,7 +58,6 @@ describe('Input', () => {
     // HINT: użyj zamockowanej metody w celu weryfikacji
 
     it('should make a callback when input changed', () => {
-        // DEMO
         let onChange = jest.fn(); //zamockowana funkcja z jest :)
         render(<Input onChange={onChange} />);
 
